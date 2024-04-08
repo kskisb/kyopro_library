@@ -9,7 +9,7 @@ using ll = long long;
 ll INF = 1LL << 60;
 
 vector<vector<ll> > dist;
-int V, E;
+int N, M;
 
 void warshall_floyd(int n) {
     for (int k=0; k<n; k++) {
@@ -24,29 +24,29 @@ void warshall_floyd(int n) {
 }
 
 int main() {
-    cin >> V >> E;
-    dist.assign(V, vector<ll>(V, INF));
-    for(int i=0; i<E; i++) {
+    cin >> N >> M;
+    dist.assign(N, vector<ll>(N, INF));
+    for(int i=0; i<M; i++) {
         ll s, t, d;
         cin >> s >> t >> d;
         dist[s][t] = d;
     }
-    for(int i=0; i<V; i++) dist[i][i] = 0;
+    for(int i=0; i<N; i++) dist[i][i] = 0;
 
-    warshall_floyd(V);
+    warshall_floyd(N);
 
     // 負閉路検出
-    for(int i=0; i<V; i++) {
+    for(int i=0; i<N; i++) {
         if(dist[i][i] < 0) {
             cout << "NEGATIVE CYCLE" << endl;
             return 0;
         }
     }
-    for(int i=0; i<V; i++) {
-        for(int j=0; j<V; j++) {
+    for(int i=0; i<N; i++) {
+        for(int j=0; j<N; j++) {
             if(dist[i][j] != INF) cout << dist[i][j];
             else cout << "INF";
-            if(j != V-1) cout << " ";
+            if(j != N-1) cout << " ";
         }
         cout << endl;
     }

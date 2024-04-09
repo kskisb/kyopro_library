@@ -62,7 +62,6 @@ int main() {
         int a, b, c;
         cin >> a >> b >> c;
         weighted_edge[i] = make_pair(c, make_pair(a, b));
-        weighted_edge[i] = make_pair(c, make_pair(b, a));
     }
 
     sort(weighted_edge.begin(), weighted_edge.end());

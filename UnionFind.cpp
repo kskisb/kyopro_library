@@ -1,15 +1,15 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+#include <climits>
+#include <queue>
+#include <algorithm>
+#include <math.h>
 using namespace std;
 using ll = long long;
-using veci = vector<int>;
-using vecll = vector<ll>;
-using vecd = vector<double>;
-using vveci = vector<veci>;
-using vvecll = vector<vecll>;
-using vvecd = vector<vecd>;
-using Graph = vector<vector<int>>;
-#define rep(i, l, r) for(int i=l; i<r; i++)
-#define rrep(i, l, r) for(int i=r-1; i>=l; i--)
+ll INF = 1LL << 60;
+ll mod = 1000000007;
 
 // 頂点 N, 辺の数 M
 int N, M;
@@ -17,13 +17,13 @@ int N, M;
 class UnionFind {
 public:
     // 親の番号を格納
-    veci parent;
+    vector<int> parent;
     // 自分がいるグループの辺の数を格納
-    veci sides;
+    vector<int> sides;
 
     UnionFind(int N) {
-        parent = veci(N, -1);
-        sides = veci(N, 0);
+        parent = vector<int>(N, -1);
+        sides = vector<int>(N, 0);
     }
 
     // 頂点 A のグループの 根 を返す
@@ -51,7 +51,7 @@ public:
         parent[A] += parent[B];
         parent[B] = A;
         sides[A]++;
-        
+
         return true;
     }
 };
@@ -60,9 +60,9 @@ int main() {
     cin >> N >> M;
     UnionFind UN(N);
 
-    rep(i, 0, M) {
+    for(int i=0; i<M; i++) {
         int u, v; cin >> u >> v; u--; v--;
         if(UN.root(u) == UN.root(v)) // true なら ループあり
-        UN.connect(a, b);
+        UN.connect(u, v);
     }
 }
